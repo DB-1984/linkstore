@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Link as LinkIcon } from "lucide-react"; // Importing the icon
 
 export default function LoginPage() {
   return (
@@ -12,8 +13,9 @@ export default function LoginPage() {
       {/* The Central Card */}
       <div className="z-10 w-full max-w-[400px] rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl dark:border-slate-800 dark:bg-slate-900/90 backdrop-blur-md">
         <div className="mb-6 flex flex-col items-center gap-1 text-center">
-          <h1 className="main-logo text-2xl font-bold tracking-tight">
-            LinkStore
+          <h1 className="main-logo flex items-center gap-2 text-2xl font-bold tracking-tight">
+            <span>LinkStore</span>
+            <LinkIcon className="h-6 w-6" strokeWidth={2.5} />
           </h1>
           <h2 className="text-xl font-semibold mt-2">Sign in to LinkStore</h2>
           <p className="text-sm text-slate-500">
