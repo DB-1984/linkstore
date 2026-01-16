@@ -1,5 +1,5 @@
 // app/layout.jsx
-import "./globals.css"; // The only place you need to import this
+import "@/app/globals.css"; // The only place you need to import this
 
 export default function RootLayout({ children }) {
   return (

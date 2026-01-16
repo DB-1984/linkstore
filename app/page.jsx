@@ -1,60 +1,122 @@
-// app/page.jsx
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-export default function RootPage() {
-  // Eventually, NextAuth's getServerSession() goes here
-  const session = null;
-
-  // If the user is logged in, you could redirect or show a "Go to App" button
-  if (session) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-2xl font-bold">Welcome back!</h1>
-        <Link href="/dashboard" className="mt-4 text-blue-600 underline">
-          Go to your Dashboard
-        </Link>
-      </div>
-    );
-  }
-
-  // If no session, show your Dual Sign-up / Register UI
+export default function LoginPage() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-50">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg border border-slate-200">
-        <div className="text-center">
-          <h1 className="text-3xl main-logo font-bold text-blue-600">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-slate-50 dark:bg-slate-950 overflow-hidden">
+      {/* Background Layer - increased opacity to 100 to ensure we see it first */}
+      <div className="absolute inset-0 z-0 bg-dot-pattern mask-radial pointer-events-none" />
+
+      {/* The Central Card */}
+      <div className="z-10 w-full max-w-[400px] rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl dark:border-slate-800 dark:bg-slate-900/90 backdrop-blur-md">
+        <div className="mb-6 flex flex-col items-center gap-1 text-center">
+          <h1 className="main-logo text-2xl font-bold tracking-tight">
             LinkStore
           </h1>
-          <p className="mt-2 text-slate-600">
-            Organize your internet bookmarks.
+          <h2 className="text-xl font-semibold mt-2">Sign in to LinkStore</h2>
+          <p className="text-sm text-slate-500">
+            Ship Faster and Focus on Growth.
           </p>
         </div>
 
-        <div className="space-y-4">
-          <Link
-            href="/login"
-            className="block w-full text-center py-3 px-4 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors"
-          >
-            Sign In
-          </Link>
-
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t"></span>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-slate-500">Or join us</span>
+        <div className="space-y-6">
+          {/* Magic Link Section */}
+          <div className="space-y-3">
+            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider text-center">
+              Login with Magic Link
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                variant="outline"
+                className="w-full bg-white text-slate-900 border-slate-200 hover:bg-slate-50"
+              >
+                Login as User
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full bg-white text-slate-900 border-slate-200 hover:bg-slate-50"
+              >
+                Login as Admin
+              </Button>
             </div>
           </div>
 
+          <form className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email address*</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">Password*</Label>
+                <Link
+                  href="#"
+                  className="text-sm font-medium text-blue-600 hover:underline"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••••••"
+                required
+              />
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                id="remember"
+                className="h-4 w-4 rounded border-slate-300 accent-blue-600"
+              />
+              <label htmlFor="remember" className="text-sm text-slate-500">
+                Remember Me
+              </label>
+            </div>
+
+            <Button className="w-full bg-slate-900 py-6 text-base font-semibold text-white hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700">
+              Sign in to LinkStore
+            </Button>
+          </form>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-slate-200" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-white px-2 text-slate-500 dark:bg-slate-900">
+                or
+              </span>
+            </div>
+          </div>
+
+          <Button
+            variant="outline"
+            className="w-full border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
+          >
+            Sign in with google
+          </Button>
+        </div>
+
+        <div className="mt-8 text-center text-sm text-slate-500">
+          New on our platform?{" "}
           <Link
             href="/register"
-            className="block w-full text-center py-3 px-4 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition-colors"
+            className="font-semibold text-blue-600 hover:underline"
           >
-            Create an Account
+            Create an account
           </Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
