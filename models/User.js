@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
   name: { type: String },
   email: { type: String, unique: true, required: true },
+  password: { type: String },
   emailVerified: { type: Date, default: null },
   image: { type: String },
   // Custom fields you might want for LinkStore

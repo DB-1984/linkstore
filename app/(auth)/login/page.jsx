@@ -1,17 +1,44 @@
+"use client";
+
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link as LinkIcon } from "lucide-react";
-import { signIn } from "@/auth"; //
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (result?.error) {
+      setError("Invalid email or password");
+    } else {
+      router.push("/links");
+      router.refresh();
+    }
+  };
+
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-slate-50 dark:bg-slate-950 overflow-hidden">
-      {/* Background Layer - increased opacity to 100 to ensure we see it first */}
+      {/* Your original Background Layer */}
       <div className="absolute inset-0 z-0 bg-dot-pattern mask-radial pointer-events-none" />
 
-      {/* The Central Card */}
+      {/* The Central Card with your original classes */}
       <div className="z-10 w-full max-w-[400px] rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl dark:border-slate-800 dark:bg-slate-900/90 backdrop-blur-md">
         <div className="mb-6 flex flex-col items-center gap-1 text-center">
           <h1 className="main-logo flex items-center gap-2 text-2xl font-bold tracking-tight">
@@ -25,7 +52,13 @@ export default function LoginPage() {
         </div>
 
         <div className="space-y-6">
-          <form className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <p className="text-sm text-red-500 text-center font-medium">
+                {error}
+              </p>
+            )}
+
             <div className="space-y-2">
               <Label htmlFor="email">Email address*</Label>
               <Input
@@ -33,6 +66,8 @@ export default function LoginPage() {
                 type="email"
                 placeholder="Enter your email address"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -51,18 +86,9 @@ export default function LoginPage() {
                 type="password"
                 placeholder="••••••••••••"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <input
-                type="checkbox"
-                id="remember"
-                className="h-4 w-4 rounded border-slate-300 accent-blue-600"
-              />
-              <label htmlFor="remember" className="text-sm text-slate-500">
-                Remember Me
-              </label>
             </div>
 
             <Button className="w-full bg-slate-900 py-6 text-base font-semibold text-white hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700">
@@ -81,20 +107,14 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <form
-            action={async () => {
-              "use server";
-              await signIn("google", { redirectTo: "/links" });
-            }}
+          <Button
+            variant="outline"
+            type="button"
+            onClick={() => signIn("google", { callbackUrl: "/links" })}
+            className="w-full border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
           >
-            <Button
-              variant="outline"
-              type="submit"
-              className="w-full border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
-            >
-              Sign in with google
-            </Button>
-          </form>
+            Sign in with google
+          </Button>
         </div>
 
         <div className="mt-8 text-center text-sm text-slate-500">
