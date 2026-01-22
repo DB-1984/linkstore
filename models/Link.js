@@ -5,7 +5,18 @@ const LinkSchema = new mongoose.Schema({
   url: { type: String, required: true },
   description: { type: String },
   category: { type: String, default: "Uncategorized" },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  // Using an array of strings is great for performance in Next.js
+  tags: {
+    type: [String],
+    default: [],
+    index: true, // Adding an index makes searching by tag much faster!
+  },
+  // Make sure this matches what you call it in your auth.js/queries
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

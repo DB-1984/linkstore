@@ -34,37 +34,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-slate-50 dark:bg-slate-950 overflow-hidden">
-      {/* Your original Background Layer */}
-      <div className="absolute inset-0 z-0 bg-dot-pattern mask-radial pointer-events-none" />
+    <div className="flex min-h-screen items-center justify-center bg-[#f4f4f5] p-4 lg:p-8">
+      {/* Main Split Container */}
+      <div className="flex w-full max-w-[900px] min-h-[600px] overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
+        {/* LEFT SIDE: The Form */}
+        <div className="flex w-full flex-col justify-center p-8 lg:w-1/2 lg:p-16">
+          <div className="mb-10">
+            <h1 className="text-3xl font-bold tracking-tight text-black">
+              Welcome back
+            </h1>
+            <p className="mt-2 text-slate-500">
+              Login to your LinkStore account
+            </p>
+          </div>
 
-      {/* The Central Card with your original classes */}
-      <div className="z-10 w-full max-w-[400px] rounded-2xl border border-slate-200 bg-white p-8 shadow-2xl dark:border-slate-800 dark:bg-slate-900/90 backdrop-blur-md">
-        <div className="mb-6 flex flex-col items-center gap-1 text-center">
-          <h1 className="main-logo flex items-center gap-2 text-2xl font-bold tracking-tight">
-            <span>LinkStore</span>
-            <LinkIcon className="h-6 w-6" strokeWidth={2.5} />
-          </h1>
-          <h2 className="text-xl font-semibold mt-2">Sign in to LinkStore</h2>
-          <p className="text-sm text-slate-500">
-            Keep all your Links in one place.
-          </p>
-        </div>
-
-        <div className="space-y-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {error && (
-              <p className="text-sm text-red-500 text-center font-medium">
-                {error}
-              </p>
-            )}
-
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="email">Email address*</Label>
+              <Label htmlFor="email" className="text-sm font-medium">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your email address"
+                placeholder="m@example.com"
+                className="h-11 rounded-xl border-slate-200 bg-white focus:ring-1 focus:ring-black"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -73,58 +66,81 @@ export default function LoginPage() {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Password*</Label>
+                <Label htmlFor="password" size="sm">
+                  Password
+                </Label>
                 <Link
                   href="#"
-                  className="text-sm font-medium text-blue-600 hover:underline"
+                  className="text-xs text-slate-500 hover:text-black hover:underline"
                 >
-                  Forgot Password?
+                  Forgot your password?
                 </Link>
               </div>
               <Input
                 id="password"
                 type="password"
-                placeholder="••••••••••••"
+                className="h-11 rounded-xl border-slate-200 bg-white focus:ring-1 focus:ring-black"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
-            <Button className="w-full bg-slate-900 py-6 text-base font-semibold text-white hover:bg-slate-800 dark:bg-blue-600 dark:hover:bg-blue-700">
-              Sign in to LinkStore
+            <Button className="h-11 w-full rounded-xl bg-[#18181b] font-medium text-white hover:bg-black">
+              Login
             </Button>
           </form>
 
-          <div className="relative">
+          <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-slate-200" />
+              <span className="w-full border-t border-slate-100" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-slate-500 dark:bg-slate-900">
-                or
+            <div className="relative flex justify-center text-xs text-slate-400">
+              <span className="bg-white px-2 uppercase tracking-tight">
+                Or continue with
               </span>
             </div>
           </div>
 
-          <Button
-            variant="outline"
-            type="button"
-            onClick={() => signIn("google", { callbackUrl: "/links" })}
-            className="w-full border-slate-200 bg-white text-slate-900 hover:bg-slate-50"
-          >
-            Sign in with google
-          </Button>
+          {/* Social Buttons Row */}
+          <div className="flex gap-4">
+            <Button
+              variant="outline"
+              onClick={() => signIn("google", { callbackUrl: "/links" })}
+              className="h-11 w-full rounded-xl border-slate-200 hover:bg-slate-50"
+            >
+              <span className="font-bold">G</span>
+            </Button>
+          </div>
+
+          <p className="mt-8 text-center text-sm text-slate-500">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/register"
+              className="font-medium text-black underline underline-offset-4"
+            >
+              Sign up
+            </Link>
+          </p>
         </div>
 
-        <div className="mt-8 text-center text-sm text-slate-500">
-          New on our platform?{" "}
-          <Link
-            href="/register"
-            className="font-semibold text-blue-600 hover:underline"
-          >
-            Create an account
-          </Link>
+        {/* RIGHT SIDE: Content Area */}
+        <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12">
+          <div className="relative flex h-full w-full items-center justify-center rounded-[1.5rem] border border-slate-200/50 bg-white/50">
+            {/* Abstract Placeholder Graphic */}
+            <div className="flex flex-col items-center gap-4 text-center opacity-20">
+              <div className="h-16 w-16 rounded-full border-2 border-slate-400" />
+              <div className="h-4 w-32 rounded-full bg-slate-400" />
+              <div className="h-4 w-24 rounded-full bg-slate-400" />
+            </div>
+
+            {/* You could put a cool quote or a feature list here later */}
+            <div className="absolute bottom-10 left-10 right-10">
+              <p className="text-sm font-medium text-slate-400">
+                "The simplest way to manage your digital life."
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

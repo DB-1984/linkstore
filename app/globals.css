@@ -13,6 +13,14 @@
   --radius-sm: 0.25rem;
 }
 
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+      linear-gradient(to bottom, #f0f0f0 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
