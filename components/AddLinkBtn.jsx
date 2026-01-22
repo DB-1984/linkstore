@@ -1,106 +1,87 @@
 "use client";
 
 import { useState } from "react";
-import { useFormStatus } from "react-dom";
 import { createLink } from "@/lib/actions";
-import { PlusCircle, Loader2, X } from "lucide-react";
+import { Plus, Loader2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
-// 1. This is a helper component, not exported
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center disabled:opacity-50 transition-colors"
-    >
-      {pending ? (
-        <Loader2 className="animate-spin mr-2" size={18} />
-      ) : (
-        "Save Link"
-      )}
-    </button>
-  );
-}
-
-// 2. This MUST be the default export that layout.jsx is looking for
 export default function AddLinkBtn() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(formData) {
+  async function onSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
     const result = await createLink(formData);
+
     if (result?.success) {
-      setIsOpen(false);
+      toast.success("Link added");
+      setOpen(false);
     }
+    setLoading(false);
   }
 
   return (
-    <>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="w-full flex items-center gap-3 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-shadow shadow-sm font-medium"
-      >
-        <PlusCircle size={18} />
-        <span>Add New Link</span>
-      </button>
-
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden border text-left">
-            <div className="flex justify-between items-center p-6 border-b">
-              <h2 className="text-xl font-bold text-slate-900">Add New Link</h2>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-slate-600"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            <form action={handleSubmit} className="p-6 space-y-4">
-              <div className="space-y-1">
-                <label className="text-sm font-medium text-slate-700">
-                  Title
-                </label>
-                <input
-                  name="title"
-                  required
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
-                  placeholder="e.g. My GitHub"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-sm font-medium text-slate-700">
-                  URL
-                </label>
-                <input
-                  name="url"
-                  type="url"
-                  required
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
-                  placeholder="https://..."
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-sm font-medium text-slate-700">
-                  Tags (comma separated)
-                </label>
-                <input
-                  name="tags"
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-900"
-                  placeholder="dev, tools, web"
-                />
-              </div>
-
-              <div className="pt-2">
-                <SubmitButton />
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-    </>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button
+          size="lg"
+          className="rounded-full bg-black text-white size-14 sm:w-auto sm:px-6 shadow-2xl hover:bg-zinc-800 transition-all active:scale-95 flex items-center justify-center border border-white/10"
+        >
+          <Plus size={24} strokeWidth={3} />
+          <span className="hidden sm:inline ml-2 font-black uppercase text-xs tracking-widest">
+            Add Link
+          </span>
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="rounded-[2rem] border-zinc-200 sm:max-w-[400px]">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-bold tracking-tight">
+            Add Resource
+          </DialogTitle>
+        </DialogHeader>
+        <form onSubmit={onSubmit} className="space-y-4 pt-2">
+          <Input
+            name="title"
+            placeholder="Title"
+            className="rounded-xl border-zinc-200 h-11"
+            required
+          />
+          <Input
+            name="url"
+            type="url"
+            placeholder="https://..."
+            className="rounded-xl border-zinc-200 h-11"
+            required
+          />
+          <Input
+            name="tags"
+            placeholder="tags (comma separated)"
+            className="rounded-xl border-zinc-200 h-11"
+          />
+          <Button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-black text-white rounded-xl h-11 font-bold"
+          >
+            {loading ? (
+              <Loader2 className="animate-spin" size={18} />
+            ) : (
+              "Save Link"
+            )}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }

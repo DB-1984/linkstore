@@ -48,9 +48,16 @@ export default function LoginPage() {
         {/* LEFT: Form Section */}
         <div className="flex w-full flex-col justify-center p-8 lg:w-1/2 lg:p-14">
           <div className="mb-8">
-            <h1 className="main-logo text-xl font-bold text-black mb-6">
-              LinkStore
-            </h1>
+            {/* Flex container to hold Logo and Brand Name */}
+            <div className="flex items-center gap-2.5 mb-6">
+              <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-black text-white font-black text-lg shadow-sm">
+                L
+              </div>
+              <h1 className="main-logo text-xl font-bold text-black tracking-tighter">
+                LinkStore
+              </h1>
+            </div>
+
             <h2 className="text-2xl font-semibold tracking-tight text-black">
               Welcome back
             </h2>
