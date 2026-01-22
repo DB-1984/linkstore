@@ -1,5 +1,6 @@
 // app/layout.jsx
-import "@/app/globals.css"; // The only place you need to import this
+import "@/app/globals.css";
+import { Toaster } from "sonner";
 
 export default function RootLayout({ children }) {
   return (
@@ -8,11 +9,18 @@ export default function RootLayout({ children }) {
         <title>LinkStore | Organize your Web</title>
         <meta name="description" content="Save and tag your favorite links" />
       </head>
-      <body className="antialiased text-slate-900 bg-slate-50">
-        {/* The {children} here represents everything else in your app:
-          The landing page, the login screen, and the entire dashboard.
-        */}
+      {/* We removed the slate classes so it uses the variables in your globals.css */}
+      <body className="antialiased">
         {children}
+
+        {/* The Toast manager sitting at the root */}
+        <Toaster
+          position="top-center"
+          // Match your new UI radius
+          toastOptions={{
+            style: { borderRadius: "1rem" },
+          }}
+        />
       </body>
     </html>
   );
