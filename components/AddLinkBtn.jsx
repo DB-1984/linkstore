@@ -27,8 +27,10 @@ export default function AddLinkBtn() {
     if (result?.success) {
       toast.success("Link added");
       setOpen(false);
+      e.target.reset(); // Clear the form for next time!
+    } else {
+      toast.error(result?.error || "Something went wrong");
     }
-    setLoading(false);
   }
 
   return (
@@ -56,6 +58,11 @@ export default function AddLinkBtn() {
             placeholder="Title"
             className="rounded-xl border-zinc-200 h-11"
             required
+          />
+          <Input
+            name="description"
+            placeholder="Short description (optional)..."
+            className="rounded-xl border-zinc-200 h-11"
           />
           <Input
             name="url"

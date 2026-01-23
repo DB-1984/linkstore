@@ -5,7 +5,7 @@ import { LogOut } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
 
-export function SignOutButton() {
+export default function SignOutButton() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const handleSignout = () => {
