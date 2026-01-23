@@ -65,7 +65,7 @@ export default function LinkCard({ link }) {
       }}
     >
       <DrawerTrigger asChild>
-        <div className="group flex items-center justify-between rounded-[2rem] border border-zinc-100 bg-white p-6 transition-all cursor-pointer active:scale-[0.98] hover:border-black">
+        <div className="group flex items-center justify-between border border-zinc-100 bg-white p-6 transition-all cursor-pointer active:scale-[0.98] hover:border-black">
           <div className="flex flex-col gap-1 overflow-hidden">
             <span className="truncate text-xl font-bold tracking-tight">
               {link.title}

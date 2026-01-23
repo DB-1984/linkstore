@@ -1,26 +1,20 @@
-// app/layout.jsx
 import "@/app/globals.css";
 import { Toaster } from "sonner";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <title>LinkStore | Organize your Web</title>
-        <meta name="description" content="Save and tag your favorite links" />
-      </head>
-      {/* We removed the slate classes so it uses the variables in your globals.css */}
-      <body className="antialiased">
-        {children}
+      <body className="antialiased min-h-screen relative isolate bg-background">
+        {/* These two divs create the depth globally */}
+        <div className="grain" />
+        <div className="studio-spotlight" />
 
-        {/* The Toast manager sitting at the root */}
-        <Toaster
-          position="top-center"
-          // Match your new UI radius
-          toastOptions={{
-            style: { borderRadius: "1rem" },
-          }}
-        />
+        {/* This wrapper holds your content (Sidebar, Nav, etc.) above the background */}
+        <div className="relative z-10 flex flex-col min-h-screen">
+          {children}
+        </div>
+
+        <Toaster position="top-center" />
       </body>
     </html>
   );

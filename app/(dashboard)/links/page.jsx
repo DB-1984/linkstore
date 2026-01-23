@@ -39,7 +39,7 @@ export default async function LinksPage({ searchParams }) {
   const links = JSON.parse(JSON.stringify(rawLinks));
 
   return (
-    <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
+    <div className="min-h-screen text-black selection:bg-black selection:text-white">
       <div className="fixed bottom-6 right-6 z-[60] sm:bottom-10 sm:right-10">
         <AddLinkBtn />
       </div>
