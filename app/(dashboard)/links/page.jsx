@@ -74,7 +74,7 @@ export default async function LinksPage({ searchParams }) {
             Library
           </h1>
           <Link
-            href="/dashboard/account"
+            href="/account"
             className="group block w-fit transition-all active:scale-95"
           >
             <p className="text-zinc-400 text-[10px] font-black uppercase tracking-widest">

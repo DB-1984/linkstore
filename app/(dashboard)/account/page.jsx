@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import ResetPasswordForm from "@/components/ResetPasswordForm";
+import UpdatePasswordForm from "@/components/UpdatePasswordForm";
 import { redirect } from "next/navigation";
 
 export default async function AccountPage() {
@@ -9,24 +9,24 @@ export default async function AccountPage() {
   return (
     <div className="max-w-xl mx-auto py-10 space-y-10">
       <header>
-        <h1 className="text-4xl font-black tracking-tighter uppercase italic">
-          Security
+        <h1 className="text-4xl font-black tracking-tighter uppercase">
+          Account
         </h1>
         <p className="text-zinc-500 text-sm font-medium">
           Manage your credentials for{" "}
-          <span className="text-indigo-400">{session.user.email}</span>
+          <span className="text-zinc-800 font-bold">{session.user.email}</span>
         </p>
       </header>
 
       {/* Password Reset Section */}
-      <section className="studio-card p-8 rounded-[2rem]">
+      <section className="p-8">
         <div className="mb-6">
           <h2 className="text-lg font-bold">Update Password</h2>
           <p className="text-xs text-zinc-500">
             Ensure your account is using a long, random password to stay secure.
           </p>
         </div>
-        <ResetPasswordForm />
+        <UpdatePasswordForm />
       </section>
 
       {/* Account Info (Read Only) */}

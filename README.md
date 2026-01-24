@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Password Management Flow
 
-## Getting Started
+1. The "Secure Change" (Authenticated)
 
-First, run the development server:
+   Where: /account page.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   Component: ResetPasswordForm.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   Action: updatePassword.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   Requirement: User must be logged in AND know their current password.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   Purpose: Security. Prevents someone from changing a password just because a user left their laptop unlocked.
 
-## Learn More
+2. The "Emergency Recovery" (Unauthenticated)
 
-To learn more about Next.js, take a look at the following resources:
+   Where: /reset-password page (reached via email).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Component: ResetPasswordConfirmForm.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   Action: confirmPasswordReset.
 
-## Deploy on Vercel
+   Requirement: User must have a valid, unexpired token from their email.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   Purpose: Recovery. Allows access when the current password is forgotten.

@@ -21,14 +21,26 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// User enters email.
+// You save the token to resetPasswordToken.
+// You send an email with a link like /api/auth/callback/credentials?token=xyz.
+// When they click it, you log them in and clear those fields.
+
 // Encrypt password using bcrypt before saving
-UserSchema.pre("save", async function (next) {
+UserSchema.pre("save", async function () {
+  // 1. If the password isn't being touched, just exit the function
   if (!this.isModified("password")) {
-    next();
+    return;
   }
 
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  // 2. Hash the password
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    // No need to call next() here if using async/await in newer Mongoose
+  } catch (error) {
+    throw error; // Mongoose will catch this and abort the save
+  }
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
