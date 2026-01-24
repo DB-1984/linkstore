@@ -2,6 +2,8 @@ import { auth } from "@/auth";
 import UpdatePasswordForm from "@/components/UpdatePasswordForm";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic"; // to keep Render happy
+
 export default async function AccountPage() {
   const session = await auth();
   if (!session) redirect("/login");
