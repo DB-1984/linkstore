@@ -114,3 +114,26 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* A clean, sharp card that pops against the white bg */
+  .studio-card {
+    @apply bg-white border border-zinc-200 shadow-sm transition-all duration-300;
+  }
+
+  .studio-card:hover {
+    @apply border-black shadow-md -translate-y-0.5;
+  }
+
+  /* Sharp, minimalist inputs */
+  .studio-input {
+    @apply w-full bg-white border border-zinc-200 rounded-lg px-4 py-2.5 
+           text-sm transition-all outline-none focus:border-black;
+  }
+
+  /* The "Doto" tag style */
+  .tag-pill {
+    @apply bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded font-bold 
+           uppercase text-[10px] tracking-tight hover:bg-black hover:text-white transition-all;
+  }
+}

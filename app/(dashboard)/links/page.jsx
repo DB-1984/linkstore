@@ -9,9 +9,6 @@ import { SignOutButton } from "@/components/SignOutButton";
 import LinkCard from "@/components/LinkCard";
 import EmptyState from "@/components/EmpyState";
 
-// searchParams is a prototype of each NextJS page
-// ... (imports remain the same)
-
 export default async function LinksPage({ searchParams }) {
   const session = await auth();
   if (!session) redirect("/login");
@@ -76,9 +73,17 @@ export default async function LinksPage({ searchParams }) {
           <h1 className="text-5xl font-black tracking-tighter leading-none mb-3">
             Library
           </h1>
-          <p className="text-zinc-400 text-[10px] font-black uppercase">
-            Curated by <span className="text-black">{session.user.email}</span>
-          </p>
+          <Link
+            href="/dashboard/account"
+            className="group block w-fit transition-all active:scale-95"
+          >
+            <p className="text-zinc-400 text-[10px] font-black uppercase tracking-widest">
+              Curated by{" "}
+              <span className="text-black group-hover:text-indigo-600 transition-colors underline decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
+                {session.user.email}
+              </span>
+            </p>
+          </Link>
         </div>
 
         <div className="grid gap-4">

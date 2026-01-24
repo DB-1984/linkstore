@@ -37,11 +37,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           );
         }
 
-        // Verify password
-        const isMatch = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
+        const isMatch = await user.matchPassword(credentials.password);
+
         if (!isMatch) {
           throw new Error("Invalid password.");
         }
@@ -49,9 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // Return the user object (this gets encoded into the JWT)
         return {
           id: user._id.toString(),
-          name: user.name,
           email: user.email,
-          image: user.image,
         };
       },
     }),

@@ -5,6 +5,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { registerUser } from "@/lib/actions"; // Your new action
+import { signIn } from "next-auth/react"; // NextAuth client-side helper
 import { LinkIcon, Loader2, ArrowRight } from "lucide-react";
 
 export default function RegisterPage() {
@@ -13,8 +16,49 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Add your registration logic here
-    setTimeout(() => setLoading(false), 1000);
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    try {
+      // 1. Create the user
+      const res = await registerUser(formData);
+
+      if (!res.success) {
+        toast.error(res.error || "Registration failed");
+        setLoading(false); // Stop loading if DB creation fails
+        return;
+      }
+
+      // 2. If we reach here, user creation was successful
+      toast.success("Account created! Logging you in...");
+
+      // 3. Attempt Sign In
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // We handle the redirect manually below
+      });
+
+      if (result?.error) {
+        toast.error("Auto-login failed. Please login manually.");
+        router.push("/login");
+      } else {
+        // 4. Force a hard refresh to the dashboard to sync the session
+        window.location.href = "/links";
+      }
+    } catch (err) {
+      // Only show "Unexpected Error" if it's NOT a redirect signal
+      if (err.message !== "NEXT_REDIRECT") {
+        console.error("Register Error:", err);
+        toast.error("An unexpected error occurred.");
+      }
+    } finally {
+      // We don't necessarily need setLoading(false) here if we are redirecting,
+      // but it's safe to keep it for the failure cases.
+      setLoading(false);
+    }
   };
 
   return (
@@ -39,9 +83,14 @@ export default function RegisterPage() {
         {/* RIGHT: Form Section */}
         <div className="flex w-full flex-col justify-center p-8 lg:w-1/2 lg:p-14">
           <div className="mb-8">
-            <h1 className="main-logo text-xl font-bold text-black mb-6">
-              LinkStore
-            </h1>
+            <div className="flex items-center gap-2.5 mb-6">
+              <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-black text-white font-black text-lg shadow-sm">
+                L
+              </div>
+              <h1 className="main-logo text-xl font-bold text-black tracking-tighter">
+                LinkStore
+              </h1>
+            </div>
             <h2 className="text-2xl font-semibold tracking-tight text-black">
               Create an account
             </h2>
@@ -57,6 +106,7 @@ export default function RegisterPage() {
               </Label>
               <Input
                 id="name"
+                name="name"
                 placeholder="John Doe"
                 className="h-10 bg-white text-black border-gray-200 focus:ring-black"
                 required
@@ -69,6 +119,7 @@ export default function RegisterPage() {
               </Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="m@example.com"
                 className="h-10 bg-white text-black border-gray-200"
@@ -80,6 +131,7 @@ export default function RegisterPage() {
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
+                name="password"
                 type="password"
                 placeholder="••••••••"
                 className="h-10 bg-white text-black border-gray-200"
