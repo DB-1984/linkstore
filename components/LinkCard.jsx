@@ -71,7 +71,7 @@ export default function LinkCard({ link }) {
               {link.title}
             </span>
             {link.description && (
-              <p className="text-xs text-zinc-500 line-clamp-1 mb-1 italic">
+              <p className="text-xs text-zinc-500 line-clamp-1 mb-1">
                 {link.description}
               </p>
             )}

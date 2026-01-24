@@ -34,7 +34,7 @@ export default async function ResetPasswordPage({ searchParams }) {
   return (
     <div className="max-w-md mx-auto py-20 px-6">
       <header className="mb-8">
-        <h1 className="text-3xl font-black tracking-tighter uppercase italic">
+        <h1 className="text-3xl font-black tracking-tighter mb-1">
           New Password
         </h1>
         <p className="text-zinc-500 text-sm">

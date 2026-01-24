@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { GoogleIcon } from "@/components/ui/GoogleIcon";
 import { LinkIcon, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -129,11 +130,11 @@ export default function LoginPage() {
 
           <Button
             variant="outline"
-            type="button"
             onClick={() => signIn("google", { callbackUrl: "/links" })}
-            className="w-full border-gray-200 text-black hover:bg-gray-50 rounded-lg h-10 font-medium"
+            className="w-full flex gap-3 h-11 border-zinc-200 hover:bg-zinc-50 transition-all font-medium"
           >
-            Google
+            <GoogleIcon />
+            Continue with Google
           </Button>
 
           <p className="mt-8 text-center text-sm text-gray-400">

@@ -34,7 +34,7 @@ export default function Navbar() {
             <nav className="hidden md:flex items-center gap-6 border-l border-zinc-100 pl-6">
               <Link
                 href="/links"
-                className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.15em] transition-colors ${
+                className={`flex items-center gap-2 text-[10px] font-black transition-colors ${
                   isActive("/links")
                     ? "text-black"
                     : "text-zinc-400 hover:text-black"
@@ -44,7 +44,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/tags"
-                className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.15em] transition-colors ${
+                className={`flex items-center gap-2 text-[10px] font-black transition-colors ${
                   isActive("/tags")
                     ? "text-black"
                     : "text-zinc-400 hover:text-black"

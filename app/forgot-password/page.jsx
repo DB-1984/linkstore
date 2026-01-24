@@ -29,7 +29,7 @@ export default function ForgotPasswordPage() {
     }
   }
 
-  // Success State: Show this after they submit the email
+  // Success State: Show this after they submit the email using isSubmitted state update in handleSubmit
   if (isSubmitted) {
     return (
       <div className="flex min-h-[80vh] flex-col items-center justify-center px-6">
@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
             <MailCheck className="size-8 text-black" />
           </div>
           <div className="space-y-2">
-            <h1 className="text-3xl font-black uppercase italic tracking-tighter">
+            <h1 className="text-3xl font-black uppercase tracking-tighter">
               Check your inbox
             </h1>
             <p className="text-zinc-500 text-sm">
@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
         </Link>
 
         <header className="space-y-2">
-          <h1 className="text-4xl font-black uppercase italic tracking-tighter">
+          <h1 className="text-4xl font-black tracking-tighter">
             Forgot Password
           </h1>
           <p className="text-zinc-500 text-sm">
