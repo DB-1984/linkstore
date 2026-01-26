@@ -43,15 +43,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#f4f4f5] p-4">
-      {/* Container */}
-      <div className="flex w-full max-w-[900px] min-h-[550px] overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm text-left">
-        {/* LEFT: Form Section */}
-        <div className="flex w-full flex-col justify-center p-8 lg:w-1/2 lg:p-14">
+    /* The Main Card Container - No longer has min-h-screen or background grid */
+    <div className="flex w-fit lg:w-full lg:max-w-[900px] min-h-[550px] overflow-hidden rounded-[2rem] border border-gray-200 bg-white/90 backdrop-blur-sm shadow-2xl">
+      {/* LEFT: Form Section */}
+      <div className="flex w-full flex-col justify-center items-center p-8 lg:w-1/2 lg:p-14 lg:items-start bg-white">
+        <div className="w-[300px] sm:w-[340px] lg:w-full">
           <div className="mb-8">
-            {/* Flex container to hold Logo and Brand Name */}
             <div className="flex items-center gap-2.5 mb-6">
-              <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-black text-white font-black text-lg shadow-sm">
+              <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-black text-white font-black text-lg shadow-sm main-logo">
                 L
               </div>
               <h1 className="main-logo text-xl font-bold text-black tracking-tighter">
@@ -65,7 +64,6 @@ export default function LoginPage() {
             <p className="text-sm text-gray-500 mt-1">Login to your account</p>
           </div>
 
-          {/* 2. Form with handleSubmit */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
               <p className="text-sm font-medium text-red-500">{error}</p>
@@ -79,7 +77,7 @@ export default function LoginPage() {
                 id="email"
                 type="email"
                 placeholder="m@example.com"
-                className="h-10 bg-white text-black border-gray-200"
+                className="h-10 bg-white text-black border-gray-200 focus:ring-1 focus:ring-black"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -91,6 +89,7 @@ export default function LoginPage() {
                 <Label htmlFor="password">Password</Label>
                 <Link
                   href="/forgot-password"
+                  size="sm"
                   className="text-xs text-gray-400 hover:text-black hover:underline"
                 >
                   Forgot password?
@@ -99,7 +98,7 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
-                className="h-10 bg-white text-black border-gray-200"
+                className="h-10 bg-white text-black border-gray-200 focus:ring-1 focus:ring-black"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -109,7 +108,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full h-10 mt-2 bg-black text-white hover:bg-gray-800 rounded-lg"
+              className="w-full h-10 mt-2 bg-black text-white hover:bg-gray-800 rounded-lg transition-colors"
             >
               {loading ? (
                 <Loader2 className="animate-spin" size={18} />
@@ -131,13 +130,13 @@ export default function LoginPage() {
           <Button
             variant="outline"
             onClick={() => signIn("google", { callbackUrl: "/links" })}
-            className="w-full flex gap-3 h-11 border-zinc-200 hover:bg-zinc-50 transition-all font-medium"
+            className="w-full flex gap-3 h-11 border-zinc-200 hover:bg-zinc-50 transition-all font-medium rounded-lg"
           >
             <GoogleIcon />
             Continue with Google
           </Button>
 
-          <p className="mt-8 text-center text-sm text-gray-400">
+          <p className="mt-8 text-center text-sm text-gray-400 lg:text-left">
             Don&apos;t have an account?{" "}
             <Link
               href="/register"
@@ -147,20 +146,27 @@ export default function LoginPage() {
             </Link>
           </p>
         </div>
+      </div>
 
-        {/* RIGHT: Visual Section */}
-        <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12">
-          <div className="w-full h-full rounded-[1.5rem] border border-gray-200/50 bg-white/50 flex flex-col items-center justify-center p-8 text-center">
-            <div className="w-12 h-12 rounded-2xl bg-black/5 flex items-center justify-center mb-4">
-              <LinkIcon className="text-black" size={24} />
-            </div>
-            <h3 className="font-semibold text-lg text-black">
-              Organize your internet
-            </h3>
-            <p className="text-sm text-gray-400 mt-2 max-w-[240px]">
-              The simplest way to manage your digital collection.
-            </p>
+      {/* RIGHT: Visual Section */}
+      <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12 relative overflow-hidden">
+        {/* The Pattern Layer */}
+        <div
+          className="bg-link-pattern absolute inset-0 opacity-[0.05] scale-150 rotate-[-15deg]"
+          aria-hidden="true"
+        />
+
+        {/* The Content Card */}
+        <div className="relative z-10 w-full h-full rounded-[1.5rem] border border-gray-200/50 bg-white/70 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center shadow-2xl shadow-black/[0.03]">
+          <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-4 shadow-lg shadow-black/20">
+            <LinkIcon className="text-white" size={24} />
           </div>
+          <h3 className="font-bold text-xl text-black tracking-tight">
+            Organize your internet
+          </h3>
+          <p className="text-sm text-gray-400 mt-2 max-w-[240px] leading-relaxed">
+            The simplest way to manage your digital collection.
+          </p>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@ export default function TagCard({ tag }) {
   return (
     <Link
       href={`/links?tag=${encodeURIComponent(tag)}`}
-      className="group relative flex items-center gap-2 px-6 py-4 rounded-[2rem] border border-zinc-100 bg-white transition-all hover:border-black active:scale-95"
+      className="group relative flex items-center gap-2 px-6 py-4 rounded-[2rem] border border-zinc-100 bg-white transition-all hover:shadow-xl hover:shadow-black/[0.02] active:scale-95"
     >
       <Hash
         size={14}

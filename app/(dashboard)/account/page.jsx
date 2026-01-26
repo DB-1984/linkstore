@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import UpdatePasswordForm from "@/components/UpdatePasswordForm";
 import { redirect } from "next/navigation";
+import { UserCog } from "lucide-react"; // Import a smart icon for Account
 
 export const dynamic = "force-dynamic";
 
@@ -9,21 +10,29 @@ export default async function AccountPage() {
   if (!session) redirect("/login");
 
   return (
-    <div className="max-w-xl mx-auto py-10 space-y-10">
+    // Added px-6 to ensure it doesn't hit the screen edges on mobile
+    <div className="max-w-xl mx-auto px-6 py-10 space-y-12">
       <header>
-        <h1 className="text-4xl font-black tracking-tighter uppercase">
-          Account
-        </h1>
-        <p className="text-zinc-500 text-sm font-medium">
+        <div className="flex items-center gap-3 mb-3">
+          {/* Matching your Library/Tags style */}
+          <div className="size-10 bg-black rounded-2xl flex items-center justify-center text-white shrink-0">
+            <UserCog size={20} />
+          </div>
+          <h1 className="text-5xl font-black tracking-tighter leading-none">
+            Account
+          </h1>
+        </div>
+
+        <p className="text-black group-hover:text-indigo-600 transition-colors decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
           Manage your credentials for{" "}
-          <span className="text-zinc-800 font-bold">{session.user.email}</span>
+          <span className="text-black font-bold">{session.user.email}</span>
         </p>
       </header>
 
-      {/* Password Reset Section */}
-      <section className="p-8">
+      {/* Password Reset Section - Standardized padding */}
+      <section className="bg-white/40 backdrop-blur-md border border-zinc-200/50 p-6 rounded-2xl">
         <div className="mb-6">
-          <h2 className="text-lg font-bold">Update Password</h2>
+          <h2 className="text-lg font-bold tracking-tight">Update Password</h2>
           <p className="text-xs text-zinc-500">
             Ensure your account is using a long, random password to stay secure.
           </p>
@@ -31,14 +40,16 @@ export default async function AccountPage() {
         <UpdatePasswordForm />
       </section>
 
-      {/* Account Info (Read Only) */}
-      <section className="p-8 border border-white/5 rounded-[2rem] bg-zinc-900/20">
-        <h2 className="text-[10px] font-bold uppercase tracking-widest text-zinc-600 mb-4">
-          Account Metadata
-        </h2>
-        <div className="flex justify-between items-center text-xs">
-          <span className="text-zinc-500 font-mono uppercase">User ID</span>
-          <span className="text-zinc-400 font-mono">{session.user.id}</span>
+      {/* Account Info - Studio Style */}
+      <section className="p-6 bg-white border-2 border-zinc-900 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-transform">
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
+          <span className="text-xs font-black uppercase text-zinc-500 font-mono tracking-tighter">
+            User ID
+          </span>
+
+          <span className="text-[11px] font-mono font-medium text-zinc-900 break-all sm:break-normal bg-zinc-100 border border-zinc-200 px-3 py-1.5 rounded-lg shadow-inner">
+            {session.user.id}
+          </span>
         </div>
       </section>
     </div>

@@ -37,7 +37,7 @@ export default async function ResetPasswordPage({ searchParams }) {
         <h1 className="text-3xl font-black tracking-tighter mb-1">
           New Password
         </h1>
-        <p className="text-zinc-500 text-sm">
+        <p className="text-black group-hover:text-indigo-600 transition-colors decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
           Set a new password for{" "}
           <span className="text-black font-bold">{user.email}</span>
         </p>

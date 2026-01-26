@@ -20,13 +20,13 @@ export default async function TagsPage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-10">
       <div className="mb-12">
-        <div className="flex items-center gap-3 mb-2">
+        <div className="flex items-center gap-3 mb-3">
           <div className="size-10 bg-black rounded-2xl flex items-center justify-center text-white">
             <Tag size={20} />
           </div>
           <h1 className="text-5xl font-black tracking-tighter">Tags</h1>
         </div>
-        <p className="text-zinc-400 text-[10px] font-black uppercase tracking-[0.3em] ml-1">
+        <p className="text-black group-hover:text-indigo-600 transition-colors decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
           Explore by category
         </p>
       </div>

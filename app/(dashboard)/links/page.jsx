@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import dbConnect from "@/lib/db";
 import LinkModel from "@/models/Link";
 import Link from "next/link";
-import { ExternalLink, Link2, Tag } from "lucide-react";
+import { Library } from "lucide-react";
 import AddLinkBtn from "@/components/AddLinkBtn";
 import { SignOutButton } from "@/components/SignOutButton";
 import LinkCard from "@/components/LinkCard";
@@ -44,49 +44,60 @@ export default async function LinksPage({ searchParams }) {
       <main className="mx-auto max-w-4xl px-6 py-10 sm:px-8">
         {/* 3. Combined Tag & Search Feedback */}
         {(tag || q) && (
-          <div className="mb-8 flex items-center justify-between bg-zinc-50 border border-zinc-100 p-4 rounded-2xl">
+          <div className="mb-10 mt-1 flex items-center justify-between bg-white border-2 border-zinc-900 p-4 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             <div className="flex items-center gap-3">
-              <span className="text-[10px] font-black uppercase text-zinc-400 tracking-widest">
+              <span className="text-xs font-black uppercase text-zinc-500 font-mono">
                 Showing:
               </span>
               {tag && (
-                <span className="bg-black text-white text-[10px] font-black px-3 py-1 rounded-full lowercase">
+                <span className="bg-zinc-900 text-white text-[10px] font-black px-3 py-1 rounded-lg lowercase tracking-tight">
                   #{tag}
                 </span>
               )}
               {q && (
-                <span className="border-2 border-black text-black text-[10px] font-black px-3 py-0.5 rounded-full uppercase">
+                <span className="bg-indigo-50 text-indigo-600 border border-indigo-200 text-[10px] font-black px-3 py-1 rounded-lg uppercase">
                   "{q}"
                 </span>
               )}
             </div>
             <Link
               href="/links"
-              className="text-[10px] font-black uppercase text-zinc-400 hover:text-black transition-colors underline decoration-2 underline-offset-4"
+              className="group flex items-center gap-2 text-[10px] font-black uppercase text-zinc-400 hover:text-black transition-colors"
             >
-              Clear
+              <span>Clear Filter</span>
+              <span className="text-lg leading-none">×</span>
             </Link>
           </div>
         )}
 
         <div className="mb-12">
-          <h1 className="text-5xl font-black tracking-tighter leading-none mb-3">
-            Library
-          </h1>
+          {/* The Flex container for the Icon and Title */}
+          <div className="flex items-center gap-3 mb-3">
+            {/* Black Icon Box matching the Tags style */}
+            <div className="size-10 bg-black rounded-2xl flex items-center justify-center text-white shrink-0">
+              <Library size={20} />
+            </div>
+
+            <h1 className="text-5xl font-black tracking-tighter leading-none">
+              Library
+            </h1>
+          </div>
+
+          {/* Curated by section */}
           <Link
             href="/account"
             className="group block w-fit transition-all active:scale-95"
           >
-            <p className="text-zinc-400 text-[10px] font-black uppercase tracking-widest">
+            <p className="text-black group-hover:text-indigo-600 transition-colors decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
               Curated by{" "}
-              <span className="text-black group-hover:text-indigo-600 transition-colors underline decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
+              <span className="text-black group-hover:text-indigo-600 transition-colors font-bold decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
                 {session.user.email}
               </span>
             </p>
           </Link>
         </div>
 
-        <div className="grid gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {links.length === 0 ? (
             <EmptyState isSearch={!!(tag || q)} />
           ) : (

@@ -65,38 +65,45 @@ export default function LinkCard({ link }) {
       }}
     >
       <DrawerTrigger asChild>
-        <div className="group flex items-center justify-between border border-zinc-100 bg-white p-6 transition-all cursor-pointer active:scale-[0.98] hover:border-black">
-          <div className="flex flex-col gap-1 overflow-hidden">
-            <span className="truncate text-xl font-bold tracking-tight">
-              {link.title}
-            </span>
-            {link.description && (
-              <p className="text-xs text-zinc-500 line-clamp-1 mb-1">
-                {link.description}
-              </p>
-            )}
-            <div className="flex items-center gap-2">
-              <span className="truncate text-xs text-zinc-400 font-medium">
-                {new URL(link.url).hostname}
+        <div className="group relative mx-auto w-full max-w-[600px] cursor-pointer active:scale-[0.98]">
+          {/* THE CARD BODY */}
+          <div className="flex items-center justify-between rounded-2xl border border-zinc-200/50 bg-white/40 p-6 backdrop-blur-xl transition-all duration-300 group-hover:bg-white/60 group-hover:shadow-xl group-hover:shadow-black/[0.02]">
+            <div className="flex flex-col gap-1 overflow-hidden">
+              <span className="truncate text-xl font-bold tracking-tight text-zinc-900">
+                {link.title}
               </span>
-              {link.tags?.length > 0 && (
-                <span className="text-[10px] bg-zinc-100 px-2 py-0.5 rounded-full font-bold uppercase tracking-tighter">
-                  {link.tags[0]}
-                </span>
+
+              {link.description && (
+                <p className="text-xs text-zinc-500 line-clamp-1 mb-1">
+                  {link.description}
+                </p>
               )}
+
+              <div className="flex items-center gap-2">
+                <span className="truncate text-xs text-zinc-400 font-medium">
+                  {new URL(link.url).hostname}
+                </span>
+                {link.tags?.length > 0 && (
+                  <span className="rounded-full bg-zinc-100/80 px-2 py-0.5 text-[10px] font-bold uppercase tracking-tighter text-zinc-500">
+                    {link.tags[0]}
+                  </span>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="flex size-12 items-center justify-center rounded-2xl bg-zinc-50 text-zinc-400 group-hover:bg-black group-hover:text-white transition-all">
-            <ExternalLink size={20} />
+
+            {/* THE ICON CONTAINER */}
+            <div className="flex size-12 items-center justify-center rounded-xl bg-zinc-900/5 text-zinc-400 transition-all duration-300 group-hover:bg-black group-hover:text-white">
+              <ExternalLink size={20} />
+            </div>
           </div>
         </div>
       </DrawerTrigger>
 
       <DrawerContent className="rounded-t-[2rem] p-6 pb-10">
-        <div className="mx-auto max-w-sm w-full">
-          <DrawerHeader className="px-0 pt-0">
+        <div className="mx-auto max-w-sm mt-4 w-full">
+          <DrawerHeader className="px-0  pt-0">
             <div className="flex items-center justify-between">
-              <DrawerTitle className="text-3xl font-black tracking-tighter uppercase">
+              <DrawerTitle className="text-3xl font-black tracking-tighter">
                 {isEditing ? "Edit" : "Manage"}
               </DrawerTitle>
               {isEditing ? (
@@ -124,7 +131,7 @@ export default function LinkCard({ link }) {
                   {link.title}
                 </h3>
                 {link.description && (
-                  <p className="text-sm text-zinc-600 mb-4">
+                  <p className="text-sm text-zinc-600 mt-4 mb-4">
                     {link.description}
                   </p>
                 )}
@@ -133,7 +140,7 @@ export default function LinkCard({ link }) {
                     <TagPill key={tag} name={tag} />
                   ))}
                 </div>
-                <p className="text-[10px] font-mono text-zinc-400 truncate uppercase tracking-widest border-t border-zinc-50 pt-4">
+                <p className="text-sm mt-4 font-mono text-zinc-600 truncate uppercase tracking-widest border-t border-zinc-50 pt-4">
                   {link.url}
                 </p>
               </div>
@@ -152,7 +159,7 @@ export default function LinkCard({ link }) {
               <div className="grid grid-cols-2 gap-3 pt-6 border-t border-zinc-100">
                 <Button
                   variant="outline"
-                  className="rounded-2xl h-14 font-black uppercase text-[10px] tracking-widest border-zinc-200"
+                  className="rounded-2xl h-14 font-black text-sm border-zinc-200"
                   onClick={() => setIsEditing(true)}
                 >
                   <Pencil size={14} className="mr-2" /> Edit Link
@@ -161,7 +168,7 @@ export default function LinkCard({ link }) {
                 <Button
                   variant="outline"
                   onClick={handleDelete}
-                  className="rounded-2xl h-14 font-black uppercase text-[10px] tracking-widest border-red-100 text-red-500 hover:bg-red-50"
+                  className="rounded-2xl h-14 font-black text-sm border-red-100 text-red-500 hover:bg-red-50"
                 >
                   <Trash2 size={16} className="mr-2" /> Delete
                 </Button>

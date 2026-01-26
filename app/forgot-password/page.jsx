@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
             <MailCheck className="size-8 text-black" />
           </div>
           <div className="space-y-2">
-            <h1 className="text-3xl font-black uppercase tracking-tighter">
+            <h1 className="text-3xl font-black tracking-tighter">
               Check your inbox
             </h1>
             <p className="text-zinc-500 text-sm">
@@ -48,7 +48,7 @@ export default function ForgotPasswordPage() {
           </div>
           <Link
             href="/login"
-            className="inline-block text-sm font-bold uppercase tracking-widest underline underline-offset-8 hover:text-zinc-500 transition-colors"
+            className="inline-block text-sm font-bold underline underline-offset-8 hover:text-zinc-500 transition-colors"
           >
             Back to Login
           </Link>
@@ -63,7 +63,7 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-[400px] space-y-8">
         <Link
           href="/login"
-          className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition-colors"
+          className="flex items-center gap-2 text-xs font-bold text-zinc-400 hover:text-black transition-colors"
         >
           <ArrowLeft size={14} strokeWidth={3} /> Back to Login
         </Link>
