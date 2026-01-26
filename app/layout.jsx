@@ -2,7 +2,8 @@ import "@/app/globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
 
-// app/layout.jsx
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
