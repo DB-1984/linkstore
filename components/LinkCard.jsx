@@ -67,33 +67,47 @@ export default function LinkCard({ link }) {
       <DrawerTrigger asChild>
         <div className="group relative mx-auto w-full max-w-[600px] cursor-pointer active:scale-[0.98]">
           {/* THE CARD BODY */}
-          <div className="flex items-center justify-between rounded-2xl border border-zinc-200/50 bg-white/40 p-6 backdrop-blur-xl transition-all duration-300 group-hover:bg-white/60 group-hover:shadow-xl group-hover:shadow-black/[0.02]">
-            <div className="flex flex-col gap-1 overflow-hidden">
-              <span className="truncate text-xl font-bold tracking-tight text-zinc-900">
-                {link.title}
-              </span>
+          <div className="flex items-start justify-between rounded-2xl border border-zinc-200/50 bg-white/40 p-6 sm:p-8 backdrop-blur-xl transition-all duration-300 group-hover:bg-white/80 group-hover:shadow-2xl group-hover:shadow-black/[0.03] group-hover:border-zinc-300">
+            <div className="flex flex-col gap-3 overflow-hidden pr-6">
+              {/* TOP SECTION: Title and Description */}
+              <div className="flex flex-col gap-1">
+                <span className="truncate text-xl font-bold tracking-tight text-zinc-900 group-hover:text-black">
+                  {link.title}
+                </span>
+                {link.description && (
+                  <p className="text-sm text-zinc-500 line-clamp-2 font-medium leading-relaxed opacity-80">
+                    {link.description}
+                  </p>
+                )}
+              </div>
 
-              {link.description && (
-                <p className="text-xs text-zinc-500 line-clamp-1 mb-1">
-                  {link.description}
-                </p>
-              )}
-
-              <div className="flex items-center gap-2">
-                <span className="truncate text-xs text-zinc-400 font-medium">
+              {/* BOTTOM SECTION: Metadata "Shelf" */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <span className="text-[11px] text-zinc-400 font-mono tracking-tight shrink-0 flex items-center gap-1.5">
+                  <span className="size-1 bg-zinc-300 rounded-full" />{" "}
+                  {/* Bullet for separation */}
                   {new URL(link.url).hostname}
                 </span>
+
                 {link.tags?.length > 0 && (
-                  <span className="rounded-full bg-zinc-100/80 px-2 py-0.5 text-[10px] font-bold uppercase tracking-tighter text-zinc-500">
-                    {link.tags[0]}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-md bg-indigo-50 px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-indigo-600 border border-indigo-100/50 transition-colors group-hover:bg-indigo-600 group-hover:text-white shrink-0">
+                      {link.tags[0]}
+                    </span>
+
+                    {link.tags.length > 1 && (
+                      <span className="text-[10px] font-bold text-zinc-800 whitespace-nowrap opacity-80">
+                        +{link.tags.length - 1} more
+                      </span>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
 
-            {/* THE ICON CONTAINER */}
-            <div className="flex size-12 items-center justify-center rounded-xl bg-zinc-900/5 text-zinc-400 transition-all duration-300 group-hover:bg-black group-hover:text-white">
-              <ExternalLink size={20} />
+            {/* THE ICON: Floating top-right for better spatial balance */}
+            <div className="flex size-10 items-center justify-center rounded-xl bg-zinc-900/5 text-zinc-400 transition-all duration-300 group-hover:bg-indigo-600 group-hover:text-white group-hover:shadow-[0_0_20px_rgba(79,70,229,0.3)] shrink-0 mt-1">
+              <ExternalLink size={18} />
             </div>
           </div>
         </div>

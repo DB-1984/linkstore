@@ -34,6 +34,7 @@ export default function TagCard({ tag }) {
         size={14}
         className="text-zinc-300 group-hover:text-black transition-colors"
       />
+
       <span className="font-bold text-lg tracking-tight lowercase">{tag}</span>
 
       <button
