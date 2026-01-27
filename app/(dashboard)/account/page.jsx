@@ -24,8 +24,7 @@ export default async function AccountPage() {
         </div>
 
         <p className="text-black group-hover:text-indigo-600 transition-colors decoration-zinc-200 underline-offset-4 group-hover:decoration-indigo-200">
-          Manage your credentials for{" "}
-          <span className="text-black font-bold">{session.user.email}</span>
+          Manage your credentials.
         </p>
       </header>
 

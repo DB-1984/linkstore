@@ -8,6 +8,7 @@ import AddLinkBtn from "@/components/AddLinkBtn";
 import { SignOutButton } from "@/components/SignOutButton";
 import LinkCard from "@/components/LinkCard";
 import EmptyState from "@/components/EmpyState";
+import WelcomeToast from "@/components/WelcomeToast";
 
 export default async function LinksPage({ searchParams }) {
   const session = await auth();
@@ -37,6 +38,7 @@ export default async function LinksPage({ searchParams }) {
 
   return (
     <div className="text-black selection:bg-black selection:text-white">
+      <WelcomeToast user={session.user} />
       <div className="fixed bottom-6 right-6 z-[60] sm:bottom-10 sm:right-10">
         <AddLinkBtn />
       </div>
