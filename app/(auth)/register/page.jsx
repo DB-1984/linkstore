@@ -64,14 +64,10 @@ export default function RegisterPage() {
 
   return (
     /* Main Card - Matching the Login max-width and styling */
-    <div className="flex w-fit lg:w-full lg:max-w-[900px] min-h-[550px] overflow-hidden rounded-[2rem] border border-gray-200 bg-white/90 backdrop-blur-sm shadow-2xl">
+    <div className="flex w-fit lg:w-full lg:max-w-[900px] min-h-[550px] overflow-hidden rounded-[2rem] border border-gray-200 bg-white/90 backdrop-blur-sm">
       {/* LEFT: Visual Section (Hidden on mobile) */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12 relative overflow-hidden">
         {/* Pattern Layer */}
-        <div
-          className="bg-link-pattern absolute inset-0 opacity-[0.05] scale-150 rotate-[-15deg]"
-          aria-hidden="true"
-        />
 
         {/* Glass Content Card */}
         <div className="relative z-10 w-full h-full rounded-[1.5rem] border border-gray-200/50 bg-white/70 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center shadow-2xl shadow-black/[0.03]">

@@ -20,6 +20,7 @@ import {
   Pencil,
   ArrowLeft,
   Loader2,
+  Ellipsis
 } from "lucide-react";
 import { deleteLink, updateLink } from "@/lib/actions";
 import { toast } from "sonner";
@@ -83,21 +84,25 @@ export default function LinkCard({ link }) {
 
               {/* BOTTOM SECTION: Metadata "Shelf" */}
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <span className="text-[11px] text-zinc-400 font-mono tracking-tight shrink-0 flex items-center gap-1.5">
+                <span className="text-[11px] text-zinc-800 pb-2 font-mono tracking-tight shrink-0 flex items-center gap-1.5">
                   <span className="size-1 bg-zinc-300 rounded-full" />{" "}
                   {/* Bullet for separation */}
                   {new URL(link.url).hostname}
                 </span>
-
                 {link.tags?.length > 0 && (
                   <div className="flex items-center gap-2">
-                    <span className="rounded-md bg-indigo-50 px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-indigo-600 border border-indigo-100/50 transition-colors group-hover:bg-indigo-600 group-hover:text-white shrink-0">
-                      {link.tags[0]}
-                    </span>
+                    {link.tags.slice(0, 2).map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-md bg-indigo-50 px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-indigo-600 border border-indigo-100/50 transition-colors group-hover:bg-indigo-600 group-hover:text-white shrink-0"
+                      >
+                        {tag}
+                      </span>
+                    ))}
 
-                    {link.tags.length > 1 && (
+                    {link.tags.length > 2 && (
                       <span className="text-[10px] font-bold text-zinc-800 whitespace-nowrap opacity-80">
-                        +{link.tags.length - 1} more
+                        <Ellipsis size={16} className="mr-2" />
                       </span>
                     )}
                   </div>
@@ -141,11 +146,11 @@ export default function LinkCard({ link }) {
             /* VIEW MODE: This is your restored layout */
             <>
               <div className="mb-6 mt-2">
-                <h3 className="text-xl font-bold leading-tight mb-2">
+                <h3 className="text-xl font-bold tracking-tight mb-2">
                   {link.title}
                 </h3>
                 {link.description && (
-                  <p className="text-sm text-zinc-600 mt-4 mb-4">
+                  <p className="text-sm text-zinc-600 py-4 mt-4 mb-4">
                     {link.description}
                   </p>
                 )}
@@ -173,18 +178,18 @@ export default function LinkCard({ link }) {
               <div className="grid grid-cols-2 gap-3 pt-6 border-t border-zinc-100">
                 <Button
                   variant="outline"
-                  className="rounded-2xl h-14 font-black text-sm border-zinc-200"
+                  className="rounded-2xl h-14 font-black tracking-tight text-sm border-zinc-200"
                   onClick={() => setIsEditing(true)}
                 >
-                  <Pencil size={14} className="mr-2" /> Edit Link
+                  <Pencil size={14} className="mr-2" /> EDIT
                 </Button>
 
                 <Button
                   variant="outline"
                   onClick={handleDelete}
-                  className="rounded-2xl h-14 font-black text-sm border-red-100 text-red-500 hover:bg-red-50"
+                  className="rounded-2xl h-14 font-black tracking-tight text-sm border-red-100 text-red-500 hover:bg-red-50"
                 >
-                  <Trash2 size={16} className="mr-2" /> Delete
+                  <Trash2 size={16} className="mr-2" /> DELETE
                 </Button>
               </div>
             </>

@@ -34,33 +34,33 @@ export default function Navbar() {
             <nav className="hidden md:flex items-center gap-6 border-l border-zinc-100 pl-6">
               <Link
                 href="/links"
-                className={`flex items-center gap-2 text-sm transition-colors ${
+                className={`flex items-center gap-2 tracking-tight text-sm transition-colors ${
                   isActive("/links")
-                    ? "text-black font-bold"
-                    : "text-zinc-400 hover:text-black"
+                    ? "text-black font-black"
+                    : "text-zinc-400 font-bold hover:text-black"
                 }`}
               >
-                <Link2 size={14} strokeWidth={3} /> My Links
+                <Link2 size={14} strokeWidth={3} /> LINKS
               </Link>
               <Link
                 href="/tags"
-                className={`flex items-center gap-2 text-sm transition-colors ${
+                className={`flex items-center gap-2 tracking-tight text-sm transition-colors ${
                   isActive("/tags")
-                    ? "text-black font-bold"
-                    : "text-zinc-400 hover:text-black"
+                    ? "text-black font-black"
+                    : "text-zinc-400 font-bold hover:text-black"
                 }`}
               >
-                <Tag size={14} strokeWidth={3} /> Tags
+                <Tag size={14} strokeWidth={3} /> TAGS
               </Link>
               <Link
                 href="/account"
-                className={`flex items-center gap-2 text-sm transition-colors ${
+                className={`flex items-center gap-2 tracking-tight text-sm transition-colors ${
                   isActive("/account")
-                    ? "text-black font-bold"
-                    : "text-zinc-400 hover:text-black"
+                    ? "text-black font-black"
+                    : "text-zinc-400 font-bold hover:text-black"
                 }`}
               >
-                <User size={14} strokeWidth={3} /> Account
+                <User size={14} strokeWidth={3} /> ACCOUNT
               </Link>
             </nav>
           )}
@@ -82,10 +82,10 @@ export default function Navbar() {
             <div className="lg:hidden">
               <SearchForm />
             </div>
-            <div className="flex justify-center gap-12">
+            <div className="flex justify-center mt-2 gap-12">
               <Link
                 href="/links"
-                className={`flex items-center gap-1.5 text-xs font-black tracking-tight transition-colors ${
+                className={`flex items-center gap-1.5 text-md uppercase font-black tracking-tight transition-colors ${
                   isActive("/links") ? "text-black" : "text-zinc-400"
                 }`}
               >
@@ -93,7 +93,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/tags"
-                className={`flex items-center gap-1.5 text-xs font-black tracking-tight transition-colors ${
+                className={`flex items-center gap-1.5 text-md uppercase font-black tracking-tight transition-colors ${
                   isActive("/tags") ? "text-black" : "text-zinc-400"
                 }`}
               >
@@ -101,12 +101,12 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/account"
-                className={`flex items-center gap-1.5 text-xs font-black tracking-tight transition-colors ${
+                className={`flex items-center gap-1.5 text-md uppercase font-black tracking-tight transition-colors ${
                   isActive("/account") ? "text-black" : "text-zinc-400"
                 }`}
               >
                 <Tag size={12} strokeWidth={3} />
-                <User size={14} strokeWidth={3} />
+                <User size={18} strokeWidth={3} />
               </Link>
             </div>
           </div>

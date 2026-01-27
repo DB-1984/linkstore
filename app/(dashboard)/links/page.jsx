@@ -36,7 +36,7 @@ export default async function LinksPage({ searchParams }) {
   const links = JSON.parse(JSON.stringify(rawLinks));
 
   return (
-    <div className="min-h-screen text-black selection:bg-black selection:text-white">
+    <div className="text-black selection:bg-black selection:text-white">
       <div className="fixed bottom-6 right-6 z-[60] sm:bottom-10 sm:right-10">
         <AddLinkBtn />
       </div>
@@ -46,7 +46,7 @@ export default async function LinksPage({ searchParams }) {
         {(tag || q) && (
           <div className="mb-10 mt-1 flex items-center justify-between bg-white border-2 border-zinc-900 p-4 rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
             <div className="flex items-center gap-3">
-              <span className="text-xs font-black uppercase text-zinc-500 font-mono">
+              <span className="text-xs font-black uppercase tracking-tight text-zinc-600 font-mono">
                 Showing:
               </span>
               {tag && (
@@ -62,7 +62,7 @@ export default async function LinksPage({ searchParams }) {
             </div>
             <Link
               href="/links"
-              className="group flex items-center gap-2 text-[10px] font-black uppercase text-zinc-400 hover:text-black transition-colors"
+              className="group flex items-center gap-2 text-[10px] font-black tracking-tight uppercase text-zinc-800 hover:text-black transition-colors"
             >
               <span>Clear Filter</span>
               <span className="text-lg leading-none">×</span>

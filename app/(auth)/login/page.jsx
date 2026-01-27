@@ -44,7 +44,7 @@ export default function LoginPage() {
 
   return (
     /* The Main Card Container - No longer has min-h-screen or background grid */
-    <div className="flex w-fit lg:w-full lg:max-w-[900px] min-h-[550px] overflow-hidden rounded-[2rem] border border-gray-200 bg-white/90 backdrop-blur-sm shadow-2xl">
+    <div className="flex w-fit lg:w-full lg:max-w-[900px] overflow-hidden rounded-[2rem] border border-gray-200 bg-white/90 backdrop-blur-sm shadow-2xl">
       {/* LEFT: Form Section */}
       <div className="flex w-full flex-col justify-center items-center p-8 lg:w-1/2 lg:p-14 lg:items-start bg-white">
         <div className="w-[300px] sm:w-[340px] lg:w-full">
@@ -149,15 +149,10 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT: Visual Section */}
-      <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12 relative overflow-hidden">
-        {/* The Pattern Layer */}
-        <div
-          className="bg-link-pattern absolute inset-0 opacity-[0.05] scale-150 rotate-[-15deg]"
-          aria-hidden="true"
-        />
+      <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12 relative overflow-hidden">     
 
         {/* The Content Card */}
-        <div className="relative z-10 w-full h-full rounded-[1.5rem] border border-gray-200/50 bg-white/70 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center shadow-2xl shadow-black/[0.03]">
+        <div className="relative z-10 w-full h-full rounded-[1.5rem] border border-gray-200/50 bg-white/70 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center shadow-black/[0.03]">
           <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-4 shadow-lg shadow-black/20">
             <LinkIcon className="text-white" size={24} />
           </div>

@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen relative bg-white">
+      <body className="antialiased relative bg-white">
         {/* THE BACKGROUND ENGINE */}
         <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
           <div className="bg-studio-grid absolute inset-0" />

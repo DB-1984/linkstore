@@ -32,7 +32,7 @@ export default function TagCard({ tag }) {
     >
       <Hash
         size={14}
-        className="text-zinc-300 group-hover:text-black transition-colors"
+        className="text-indigo-600 group-hover:text-black transition-colors"
       />
 
       <span className="font-bold text-lg tracking-tight lowercase">{tag}</span>

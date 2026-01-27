@@ -1,7 +1,7 @@
 // app/auth/layout.jsx
 export default function AuthLayout({ children }) {
   return (
-    <div className="relative flex min-h-screen items-center justify-center p-4 overflow-hidden">
+    <div className="relative flex items-center justify-center p-4 mt-4 overflow-hidden">
       {/* SHARED BACKGROUND DECORATION */}
       <div className="absolute inset-0 z-0">
         {/* 1. The Grid */}

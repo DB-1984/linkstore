@@ -38,7 +38,7 @@ export default function AddLinkBtn() {
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="rounded-full bg-black text-white size-14 sm:w-auto sm:px-2 shadow-2xl hover:bg-zinc-800 transition-all active:scale-95 flex items-center justify-center border border-white/10"
+          className="rounded-full bg-black text-white size-14 sm:w-auto sm:px-2 xl hover:bg-zinc-800 transition-all active:scale-95 flex items-center justify-center border border-white/10"
         >
           <Plus size={24} strokeWidth={3} />
           <span className="hidden sm:inline font-black text-sm">Add Link</span>
