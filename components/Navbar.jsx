@@ -77,36 +77,42 @@ export default function Navbar() {
 
       {/* MOBILE SUB-NAV - Only if NOT an auth page */}
       {!isAuthPage && (
-        <div className="md:hidden border-t border-zinc-50 bg-white px-6 py-4">
-          <div className="flex flex-col gap-4">
+        <div className="md:hidden border-t border-zinc-100 bg-white/80 backdrop-blur-md px-6 py-4">
+          <div className="flex flex-col gap-6">
+            {" "}
+            {/* Increased gap between search and icons */}
             <div className="lg:hidden">
               <SearchForm />
             </div>
-            <div className="flex justify-center mt-2 gap-12">
+            {/* 1. Removed gap-12 
+          2. Added w-full and justify-around 
+      */}
+            <div className="flex w-full justify-around items-center">
               <Link
                 href="/links"
-                className={`flex items-center gap-1.5 text-md uppercase font-black tracking-tight transition-colors ${
+                className={`flex flex-col items-center gap-1 transition-colors ${
                   isActive("/links") ? "text-black" : "text-zinc-400"
                 }`}
               >
-                <Link2 size={12} strokeWidth={3} /> My Links
+                <Link2 size={22} strokeWidth={isActive("/links") ? 3 : 2} />
               </Link>
+
               <Link
                 href="/tags"
-                className={`flex items-center gap-1.5 text-md uppercase font-black tracking-tight transition-colors ${
+                className={`flex flex-col items-center gap-1 transition-colors ${
                   isActive("/tags") ? "text-black" : "text-zinc-400"
                 }`}
               >
-                <Tag size={12} strokeWidth={3} /> Tags
+                <Tag size={22} strokeWidth={isActive("/tags") ? 3 : 2} />
               </Link>
+
               <Link
                 href="/account"
-                className={`flex items-center gap-1.5 text-md uppercase font-black tracking-tight transition-colors ${
+                className={`flex flex-col items-center gap-1 transition-colors ${
                   isActive("/account") ? "text-black" : "text-zinc-400"
                 }`}
               >
-                <Tag size={12} strokeWidth={3} />
-                <User size={18} strokeWidth={3} />
+                <User size={22} strokeWidth={isActive("/account") ? 3 : 2} />
               </Link>
             </div>
           </div>

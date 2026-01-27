@@ -8,7 +8,6 @@ export default function WelcomeToast({ user }) {
 
   useEffect(() => {
     if (!hasToasted.current && user) {
-      // Small delay so it pops after the page layout settles
       const timer = setTimeout(() => {
         toast.success('Welcome back!')
       }, 500)
