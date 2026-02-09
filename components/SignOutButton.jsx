@@ -19,7 +19,7 @@ export default function SignOutButton() {
     // 2. Set a timeout to wait before actually triggering the auth change
     setTimeout(async () => {
       await signOut({ callbackUrl: "/login" });
-    }, 2000); // 2-second delay
+    }, 500); // 2-second delay
   };
 
   return (

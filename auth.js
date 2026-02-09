@@ -5,7 +5,6 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb"; // Point this to your NEW raw driver file
 import dbConnect from "./lib/db"; // For Mongoose/Credentials
 import User from "./models/User";
-import bcrypt from "bcryptjs";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: MongoDBAdapter(clientPromise),
@@ -55,17 +54,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/login", // Points to your custom login page
   },
   callbacks: {
-    // When using JWT strategy, the 'user' object is passed to 'jwt' on sign in
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
+      // 'user' and 'account' are only defined on the FIRST sign-in
       if (user) {
         token.id = user.id;
       }
+      if (account) {
+        token.provider = account.provider;
+      }
       return token;
     },
-    // Then the 'token' is passed to the session
     async session({ session, token }) {
-      if (token?.id) {
+      if (token) {
         session.user.id = token.id;
+        session.user.provider = token.provider;
       }
       return session;
     },

@@ -18,10 +18,8 @@ export default function RootLayout({ children }) {
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-1">{children}</main>
+          <Toaster position="top-center" expand={false} richColors />
         </div>
-
-        {/* RESTORED: The Toaster component */}
-        <Toaster position="top-center" expand={false} richColors />
       </body>
     </html>
   );

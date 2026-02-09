@@ -1,20 +1,25 @@
-// For OAuth
-"use client"
-import { useEffect, useRef } from "react";
+"use client";
+import { useEffect } from "react";
 import { toast } from "sonner";
 
 export default function WelcomeToast({ user }) {
-  const hasToasted = useRef(false)
-
   useEffect(() => {
-    if (!hasToasted.current && user) {
-      const timer = setTimeout(() => {
-        toast.success('Welcome back!')
-      }, 500)
-      hasToasted.current = true
-      return () => clearTimeout(timer)
-    }
-  }, [user])
+    if (user?.provider !== "google") return;
 
-  return null 
+    const greeted = sessionStorage.getItem("g_greeted");
+
+    if (!greeted) {
+      // Add a 500ms heartbeat delay to let the UI settle
+      const timer = setTimeout(() => {
+        toast.success("Welcome back!", {
+          description: `Signed in as ${user.email}`,
+        });
+        sessionStorage.setItem("g_greeted", "true");
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [user]);
+
+  return null;
 }

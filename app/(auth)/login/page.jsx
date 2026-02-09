@@ -129,7 +129,12 @@ export default function LoginPage() {
 
           <Button
             variant="outline"
-            onClick={() => signIn("google", { callbackUrl: "/links" })}
+            onClick={() =>
+              signIn("google", {
+                callbackUrl: "/links?login=success",
+                prompt: "select_account",
+              })
+            }
             className="w-full flex gap-3 h-11 border-zinc-200 hover:bg-zinc-50 transition-all font-medium rounded-lg"
           >
             <GoogleIcon />
@@ -149,8 +154,7 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT: Visual Section */}
-      <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12 relative overflow-hidden">     
-
+      <div className="hidden lg:flex lg:w-1/2 bg-[#f4f4f5] items-center justify-center p-12 relative overflow-hidden">
         {/* The Content Card */}
         <div className="relative z-10 w-full h-full rounded-[1.5rem] border border-gray-200/50 bg-white/70 backdrop-blur-xl flex flex-col items-center justify-center p-8 text-center shadow-black/[0.03]">
           <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center mb-4 shadow-lg shadow-black/20">
