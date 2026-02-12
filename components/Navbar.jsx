@@ -14,6 +14,7 @@ export default function Navbar() {
     "/register",
     "/forgot-password",
     "/reset-password",
+    "/about",
   ].includes(pathname);
 
   return (
@@ -34,33 +35,33 @@ export default function Navbar() {
             <nav className="hidden md:flex items-center gap-6 border-l border-zinc-100 pl-6">
               <Link
                 href="/links"
-                className={`flex items-center gap-2 tracking-tight text-sm transition-colors ${
+                className={`flex items-center gap-2 tracking-tighter text-sm transition-colors ${
                   isActive("/links")
                     ? "text-black font-black"
                     : "text-zinc-400 font-bold hover:text-black"
                 }`}
               >
-                <Link2 size={14} strokeWidth={3} /> LINKS
+                <Link2 size={14} strokeWidth={3} /> Links
               </Link>
               <Link
                 href="/tags"
-                className={`flex items-center gap-2 tracking-tight text-sm transition-colors ${
+                className={`flex items-center gap-2 tracking-tighter text-sm transition-colors ${
                   isActive("/tags")
                     ? "text-black font-black"
                     : "text-zinc-400 font-bold hover:text-black"
                 }`}
               >
-                <Tag size={14} strokeWidth={3} /> TAGS
+                <Tag size={14} strokeWidth={3} /> Tags
               </Link>
               <Link
                 href="/account"
-                className={`flex items-center gap-2 tracking-tight text-sm transition-colors ${
+                className={`flex items-center gap-2 tracking-tighter text-sm transition-colors ${
                   isActive("/account")
                     ? "text-black font-black"
                     : "text-zinc-400 font-bold hover:text-black"
                 }`}
               >
-                <User size={14} strokeWidth={3} /> ACCOUNT
+                <User size={14} strokeWidth={3} /> Account
               </Link>
             </nav>
           )}

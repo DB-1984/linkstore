@@ -4,6 +4,16 @@ import { Toaster } from "sonner";
 
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: {
+    default: "LinkStore | Your Digital Library",
+    template: "%s | LinkStore",
+  },
+  description:
+    "Organize your favorite corners of the internet in one studio-grade dashboard.",
+  metadataBase: new URL("https://your-linkstore-app.com"),
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

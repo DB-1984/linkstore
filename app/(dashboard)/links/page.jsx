@@ -10,6 +10,14 @@ import LinkCard from "@/components/LinkCard";
 import EmptyState from "@/components/EmpyState";
 import WelcomeToast from "@/components/WelcomeToast";
 
+export async function generateMetadata({ searchParams }) {
+  const { tag, q } = await searchParams;
+
+  if (tag) return { title: `#${tag} Collection` };
+  if (q) return { title: `Search: ${q}` };
+  return { title: "My Library" };
+}
+
 export default async function LinksPage({ searchParams }) {
   const session = await auth();
   if (!session) redirect("/login");

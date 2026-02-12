@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GoogleIcon } from "@/components/ui/GoogleIcon";
-import { LinkIcon, Loader2 } from "lucide-react";
+import { LinkIcon, Loader2, HelpCircle } from "lucide-react";
 import { toast } from "sonner";
 
 export default function LoginPage() {
@@ -166,6 +166,12 @@ export default function LoginPage() {
           <p className="text-sm text-gray-400 mt-2 max-w-[240px] leading-relaxed">
             The simplest way to manage your digital collection.
           </p>
+          <Link
+            href="/about"
+            className="flex mt-3 items-center gap-2 text-sm font-bold tracking-tighter text-zinc-600 hover:text-black transition-colors"
+          >
+            <HelpCircle size={14} strokeWidth={3} /> What is LinkStore?
+          </Link>
         </div>
       </div>
     </div>
