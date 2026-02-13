@@ -150,6 +150,12 @@ export default function LoginPage() {
               Sign up
             </Link>
           </p>
+          <Link
+            href="/about"
+            className="flex mt-4 items-center gap-2 text-sm font-bold tracking-tighter text-zinc-600 hover:text-black transition-colors"
+          >
+            <HelpCircle size={14} strokeWidth={3} /> What is LinkStore?
+          </Link>
         </div>
       </div>
 
@@ -166,12 +172,6 @@ export default function LoginPage() {
           <p className="text-sm text-gray-400 mt-2 max-w-[240px] leading-relaxed">
             The simplest way to manage your digital collection.
           </p>
-          <Link
-            href="/about"
-            className="flex mt-3 items-center gap-2 text-sm font-bold tracking-tighter text-zinc-600 hover:text-black transition-colors"
-          >
-            <HelpCircle size={14} strokeWidth={3} /> What is LinkStore?
-          </Link>
         </div>
       </div>
     </div>
