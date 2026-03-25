@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap");
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Sidebar Mappings */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-xl: 1rem;
+  --radius-lg: 0.75rem;
+  --radius-md: 0.5rem;
+  --radius-sm: 0.25rem;
+
+  @keyframes float-blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  --animation-float-blob: float-blob 15s infinite alternate ease-in-out;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #09090b;
+  --primary: #18181b;
+  --primary-foreground: #ffffff;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #18181b;
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+
+  /* AUTOMATIC STUDIO TOASTER STYLE */
+  [data-sonner-toast] {
+    --radius: var(--radius-lg);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    border: 1px solid var(--border) !important;
+    background: var(--background) !important;
+    color: var(--foreground) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04) !important;
+  }
+}
+
+@layer components {
+  .main-logo {
+    font-family: "Doto", sans-serif;
+  }
+
+  .studio-card {
+    @apply bg-white border border-zinc-200 shadow-sm transition-all duration-300;
+  }
+  .studio-card:hover {
+    @apply border-black shadow-md -translate-y-0.5;
+  }
+
+  .studio-input {
+    @apply w-full bg-white border border-zinc-200 rounded-lg px-4 py-2.5 
+           text-sm transition-all outline-none focus:border-black;
+  }
+
+  .tag-pill {
+    @apply bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded font-bold 
+           uppercase text-[10px] tracking-tight hover:bg-black hover:text-white transition-all;
+  }
+}
+
+@layer utilities {
+  .bg-studio-grid {
+    /* Creates a 40px square grid using 1px zinc-200 lines */
+    background-image: radial-gradient(#c9c9cd 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
